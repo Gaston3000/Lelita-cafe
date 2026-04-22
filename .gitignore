@@ -18,5 +18,9 @@ Desktop.ini
 # Secrets (por las dudas)
 .env
 .env.*
+!.env.example
 *.pem
 *.key
+
+# Deploy artifacts
+webp-pack.zip
