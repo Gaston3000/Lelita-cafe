@@ -1,0 +1,27 @@
+{
+	"name": "Cafetería Lelita",
+	"short_name": "Lelita",
+	"description": "Carta digital de Cafetería Lelita: lunch, brunch, infusiones y tortas caseras en Palermo, CABA.",
+	"start_url": "/index.html",
+	"scope": "/",
+	"display": "standalone",
+	"orientation": "portrait",
+	"background_color": "#f7ebdd",
+	"theme_color": "#4f6d7a",
+	"lang": "es-AR",
+	"categories": ["food", "lifestyle"],
+	"icons": [
+		{
+			"src": "Fotos/1.png",
+			"sizes": "512x512",
+			"type": "image/png",
+			"purpose": "any"
+		},
+		{
+			"src": "Fotos/favicon-l.svg",
+			"sizes": "any",
+			"type": "image/svg+xml",
+			"purpose": "any"
+		}
+	]
+}

@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /tools/
+Disallow: /Fotos_backup_*/
+
+Sitemap: https://lelita.com.ar/sitemap.xml
