@@ -1,0 +1,14 @@
+# Dominio canónico: https://lelita.com.ar (sin www).
+# http://... y www.... redirigen con 301 para no duplicar el sitio en Google.
+<IfModule mod_rewrite.c>
+	RewriteEngine On
+
+	# http -> https (contempla proxy que termine TLS adelante de Apache)
+	RewriteCond %{HTTPS} !=on
+	RewriteCond %{HTTP:X-Forwarded-Proto} !=https
+	RewriteRule ^ https://lelita.com.ar%{REQUEST_URI} [L,R=301]
+
+	# www -> sin www
+	RewriteCond %{HTTP_HOST} ^www\.lelita\.com\.ar$ [NC]
+	RewriteRule ^ https://lelita.com.ar%{REQUEST_URI} [L,R=301]
+</IfModule>

@@ -511,10 +511,10 @@ document.addEventListener('DOMContentLoaded', () => {
 			doubleClickZoom: 'center',
 		}).setView([lat, lng], zoom);
 
-		// CartoDB Voyager: tonos cálidos / tipografía clara, ideal para un look "boutique".
-		window.L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
-			attribution: '&copy; <a href="https://openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions" target="_blank" rel="noopener">CARTO</a>',
-			subdomains: 'abcd',
+		// OpenStreetMap (sin API key). CARTO pasó a exigir key y mostraba "API KEY REQUIRED".
+		// El tono cálido lo da el filtro CSS de .location-map__canvas.
+		window.L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+			attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a>',
 			maxZoom: 19,
 		}).addTo(map);
 
@@ -706,8 +706,8 @@ document.addEventListener('DOMContentLoaded', () => {
 			'8. Servicios de terceros': '8. Third-party services',
 			'Google Analytics (GA4):': 'Google Analytics (GA4):',
 			'nos ayuda a medir el trafico del sitio.': 'helps us measure site traffic.',
-			'Google Maps:': 'Google Maps:',
-			'se usa para mostrar la ubicacion del local.': 'is used to show the venue location.',
+			'OpenStreetMap:': 'OpenStreetMap:',
+			'muestra el mapa con la ubicacion del local. Los botones "Abrir en Maps" y "Como llegar" abren Google Maps.': 'shows the map with the venue location. The "Abrir en Maps" and "Como llegar" buttons open Google Maps.',
 			'WhatsApp:': 'WhatsApp:',
 			'al hacer clic en el boton, la conversacion ocurre en la plataforma de WhatsApp.': 'when you click the button, the conversation happens on the WhatsApp platform.',
 			'Redes sociales:': 'Social media:',
@@ -1054,8 +1054,8 @@ document.addEventListener('DOMContentLoaded', () => {
 			'8. Servicios de terceros': '8. Servicos de terceiros',
 			'Google Analytics (GA4):': 'Google Analytics (GA4):',
 			'nos ayuda a medir el trafico del sitio.': 'nos ajuda a medir o trafego do site.',
-			'Google Maps:': 'Google Maps:',
-			'se usa para mostrar la ubicacion del local.': 'e usado para mostrar a localizacao do estabelecimento.',
+			'OpenStreetMap:': 'OpenStreetMap:',
+			'muestra el mapa con la ubicacion del local. Los botones "Abrir en Maps" y "Como llegar" abren Google Maps.': 'mostra o mapa com a localizacao do estabelecimento. Os botoes "Abrir en Maps" e "Como llegar" abrem o Google Maps.',
 			'WhatsApp:': 'WhatsApp:',
 			'al hacer clic en el boton, la conversacion ocurre en la plataforma de WhatsApp.': 'ao clicar no botao, a conversa ocorre na plataforma do WhatsApp.',
 			'Redes sociales:': 'Redes sociais:',

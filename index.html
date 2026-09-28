@@ -11,9 +11,9 @@
 		<link rel="canonical" href="https://lelita.com.ar/" />
 
 		<!-- Icons -->
-		<link rel="icon" href="Fotos/favicon-l.svg?v=20260421" type="image/svg+xml" sizes="any" />
-		<link rel="icon" href="Fotos/1.png?v=20260421" type="image/png" sizes="32x32" />
-		<link rel="apple-touch-icon" href="Fotos/1.png?v=20260421" />
+		<link rel="icon" href="Fotos/favicon-l.svg?v=20260928" type="image/svg+xml" sizes="any" />
+		<link rel="icon" href="Fotos/1.png?v=20260928" type="image/png" sizes="32x32" />
+		<link rel="apple-touch-icon" href="Fotos/1.png?v=20260928" />
 		<link rel="manifest" href="manifest.webmanifest" />
 
 		<!-- Open Graph / Twitter -->
@@ -37,13 +37,13 @@
 		<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700;800&family=Playwrite+CZ:opsz,wght@8..144,200..400&family=Raleway:wght@400;600&display=swap" rel="stylesheet" />
 
 		<!-- Preload LCP -->
-		<link rel="preload" as="image" href="Fotos/latte.webp" type="image/webp" fetchpriority="high" />
+		<link rel="preload" as="image" href="Fotos/LELITA-poster.webp" type="image/webp" fetchpriority="high" />
 
-		<link rel="stylesheet" href="styles.css?v=20260421" />
+		<link rel="stylesheet" href="styles.css?v=20260928" />
 
 		<!-- Leaflet (mapa interactivo premium) -->
 		<link rel="preconnect" href="https://unpkg.com" crossorigin />
-		<link rel="preconnect" href="https://a.basemaps.cartocdn.com" crossorigin />
+		<link rel="preconnect" href="https://tile.openstreetmap.org" />
 		<link
 			rel="stylesheet"
 			href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
@@ -57,7 +57,7 @@
 			crossorigin=""
 		></script>
 
-		<script defer src="codigo.js?v=20260421"></script>
+		<script defer src="codigo.js?v=20260928"></script>
 
 		<!-- Google tag (gtag.js) -->
 		<script async src="https://www.googletagmanager.com/gtag/js?id=G-SQ95VVT5MY"></script>
@@ -126,7 +126,7 @@
 			<div class="header-inner">
 				<!-- Logo (izquierda) -->
 				<a href="index.html" class="logo" aria-label="Inicio">
-					<img class="logo-img" src="Fotos/1.png?v=20260421" alt="" />
+					<picture><source srcset="Fotos/1.webp?v=20260928" type="image/webp" /><img class="logo-img" src="Fotos/1.png?v=20260928" alt="" /></picture>
 				</a>
 
 				<!-- Selector de idioma -->
@@ -199,9 +199,8 @@
 						muted
 						loop
 						aria-label="Presentación de Cafetería Lelita"
-						poster="Fotos/latte.jpg">
-						<!-- Reemplazar src cuando subas tu video -->
-						<source src="Fotos/LELITA.mp4" type="video/mp4" />
+						poster="Fotos/LELITA-poster.webp">
+						<source src="Fotos/LELITA-web.mp4" type="video/mp4" />
 						Tu navegador no soporta video HTML5.
 					</video>
 				</figure>
@@ -502,7 +501,7 @@
 		<footer class="site-footer">
 			<div class="footer-inner">
 				<div class="footer-brand">
-					<img src="Fotos/1.png?v=20260421" alt="Cafetería Lelita" class="footer-logo" />
+					<picture><source srcset="Fotos/1.webp?v=20260928" type="image/webp" /><img src="Fotos/1.png?v=20260928" alt="Cafetería Lelita" class="footer-logo" /></picture>
 				</div>
 				<div class="footer-hours" aria-label="Horarios de atención">
 					<h2 class="footer-heading">Horarios</h2>
