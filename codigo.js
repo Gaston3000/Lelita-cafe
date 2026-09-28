@@ -15,74 +15,6 @@ document.addEventListener('DOMContentLoaded', () => {
 	const root = document.documentElement;
 	const galleries = document.querySelectorAll('[data-gallery]');
 	const body = document.body;
-	const GA_MEASUREMENT_ID = 'G-SQ95VVT5MY';
-	const CONSENT_KEY = 'lelitaConsentChoice';
-
-	const applyAnalyticsConsent = (granted) => {
-		window[`ga-disable-${GA_MEASUREMENT_ID}`] = !granted;
-		if (typeof gtag === 'function') {
-			gtag('consent', 'update', {
-				analytics_storage: granted ? 'granted' : 'denied'
-			});
-			if (granted) {
-				gtag('event', 'page_view');
-			}
-		}
-	};
-
-	const renderConsentBanner = () => {
-		if (document.querySelector('.consent-banner')) return;
-
-		const banner = document.createElement('section');
-		banner.className = 'consent-banner';
-		banner.setAttribute('role', 'dialog');
-		banner.setAttribute('aria-live', 'polite');
-		banner.setAttribute('aria-label', 'Consentimiento de cookies');
-
-		banner.innerHTML = `
-			<div class="consent-card">
-				<div class="consent-copy">
-					<p class="consent-title">Tu privacidad en Lelita</p>
-					<p class="consent-text">Usamos cookies para medir el trafico y mejorar la experiencia. Podes aceptar o rechazar el analitico.</p>
-				</div>
-				<div class="consent-actions">
-					<button class="consent-btn consent-btn--reject" type="button">Rechazar</button>
-					<button class="consent-btn consent-btn--accept" type="button">Aceptar</button>
-				</div>
-			</div>
-		`;
-
-		const rejectBtn = banner.querySelector('.consent-btn--reject');
-		const acceptBtn = banner.querySelector('.consent-btn--accept');
-
-		const closeBanner = () => {
-			banner.remove();
-		};
-
-		rejectBtn.addEventListener('click', () => {
-			localStorage.setItem(CONSENT_KEY, 'rejected');
-			applyAnalyticsConsent(false);
-			closeBanner();
-		});
-
-		acceptBtn.addEventListener('click', () => {
-			localStorage.setItem(CONSENT_KEY, 'accepted');
-			applyAnalyticsConsent(true);
-			closeBanner();
-		});
-
-		body.appendChild(banner);
-	};
-
-	const storedConsent = localStorage.getItem(CONSENT_KEY);
-	if (storedConsent === 'accepted') {
-		applyAnalyticsConsent(true);
-	} else if (storedConsent === 'rejected') {
-		applyAnalyticsConsent(false);
-	} else {
-		renderConsentBanner();
-	}
-
 	// Devuelve la URL WebP equivalente a un src .jpg/.jpeg/.png, si aplica.
 	const getWebpSrc = (src) => {
 		if (!src) return null;
@@ -702,7 +634,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			'6. Bases legales': '6. Legal bases',
 			'Tratamos los datos en base al consentimiento del usuario, el interes legitimo para mejorar la web y la atencion de consultas, y el cumplimiento de obligaciones legales cuando corresponda.': 'We process data based on user consent, our legitimate interest in improving the website and handling inquiries, and compliance with legal obligations when applicable.',
 			'7. Cookies y tecnologias similares': '7. Cookies and similar technologies',
-			'Usamos cookies y tecnologias similares para analitica y funcionamiento del sitio. Podes aceptar o rechazar desde el banner de consentimiento. Tu eleccion se guarda en el navegador y puede modificarse desde su configuracion.': 'We use cookies and similar technologies for analytics and site functionality. You can accept or reject them from the consent banner. Your choice is stored in your browser and can be changed in its settings.',
+			'Usamos cookies de Google Analytics para medir el trafico del sitio de forma agregada; no las usamos para publicidad. Podes bloquearlas o borrarlas desde la configuracion de tu navegador.': 'We use Google Analytics cookies to measure site traffic in aggregate; we do not use them for advertising. You can block or delete them from your browser settings.',
 			'8. Servicios de terceros': '8. Third-party services',
 			'Google Analytics (GA4):': 'Google Analytics (GA4):',
 			'nos ayuda a medir el trafico del sitio.': 'helps us measure site traffic.',
@@ -1050,7 +982,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			'6. Bases legales': '6. Bases legais',
 			'Tratamos los datos en base al consentimiento del usuario, el interes legitimo para mejorar la web y la atencion de consultas, y el cumplimiento de obligaciones legales cuando corresponda.': 'Tratamos os dados com base no consentimento do usuario, no interesse legitimo de melhorar o site e atender consultas, e no cumprimento de obrigacoes legais quando aplicavel.',
 			'7. Cookies y tecnologias similares': '7. Cookies e tecnologias semelhantes',
-			'Usamos cookies y tecnologias similares para analitica y funcionamiento del sitio. Podes aceptar o rechazar desde el banner de consentimiento. Tu eleccion se guarda en el navegador y puede modificarse desde su configuracion.': 'Usamos cookies e tecnologias semelhantes para analitica e funcionamento do site. Voce pode aceitar ou rejeitar pelo banner de consentimento. Sua escolha fica salva no navegador e pode ser alterada nas configuracoes.',
+			'Usamos cookies de Google Analytics para medir el trafico del sitio de forma agregada; no las usamos para publicidad. Podes bloquearlas o borrarlas desde la configuracion de tu navegador.': 'Usamos cookies do Google Analytics para medir o trafego do site de forma agregada; nao os usamos para publicidade. Voce pode bloquea-los ou apaga-los nas configuracoes do navegador.',
 			'8. Servicios de terceros': '8. Servicos de terceiros',
 			'Google Analytics (GA4):': 'Google Analytics (GA4):',
 			'nos ayuda a medir el trafico del sitio.': 'nos ajuda a medir o trafego do site.',

@@ -10,17 +10,17 @@
     <meta name="robots" content="noindex, follow" />
     <link rel="canonical" href="https://lelita.com.ar/privacy.html" />
 
-    <link rel="icon" href="Fotos/favicon-l.svg?v=2026092804" type="image/svg+xml" sizes="any" />
-    <link rel="icon" href="Fotos/1.png?v=2026092804" type="image/png" sizes="32x32" />
-    <link rel="apple-touch-icon" href="Fotos/1.png?v=2026092804" />
+    <link rel="icon" href="Fotos/favicon-l.svg?v=2026092805" type="image/svg+xml" sizes="any" />
+    <link rel="icon" href="Fotos/1.png?v=2026092805" type="image/png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="Fotos/1.png?v=2026092805" />
     <link rel="manifest" href="manifest.webmanifest" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700;800&family=Playwrite+CZ:opsz,wght@8..144,200..400&family=Raleway:wght@400;600&display=swap" rel="stylesheet" />
 
-    <link rel="stylesheet" href="styles.css?v=2026092804" />
-    <script defer src="codigo.js?v=2026092804"></script>
+    <link rel="stylesheet" href="styles.css?v=2026092805" />
+    <script defer src="codigo.js?v=2026092805"></script>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-SQ95VVT5MY"></script>
     <script>
@@ -28,20 +28,24 @@
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
 
+      // Sin banner: analitica activa. Si alguien ya habia tocado "Rechazar", se respeta.
+      var lelitaAnalyticsOff = false;
+      try { lelitaAnalyticsOff = localStorage.getItem('lelitaConsentChoice') === 'rejected'; } catch (e) {}
+
       gtag('consent', 'default', {
         ad_storage: 'denied',
-        analytics_storage: 'denied',
+        analytics_storage: lelitaAnalyticsOff ? 'denied' : 'granted',
         functionality_storage: 'granted',
         security_storage: 'granted'
       });
 
-      gtag('config', 'G-SQ95VVT5MY', { send_page_view: false });
+      gtag('config', 'G-SQ95VVT5MY');
     </script>
   </head>
   <body class="page-privacy">
     <header class="site-header">
       <div class="header-inner">
-        <a href="index.html" class="logo" aria-label="Inicio"><picture><source srcset="Fotos/1.webp?v=2026092804" type="image/webp" /><img class="logo-img" src="Fotos/1.png?v=2026092804" alt="" /></picture></a>
+        <a href="index.html" class="logo" aria-label="Inicio"><picture><source srcset="Fotos/1.webp?v=2026092805" type="image/webp" /><img class="logo-img" src="Fotos/1.png?v=2026092805" alt="" /></picture></a>
         <div class="lang-switcher">
           <button class="lang-toggle" type="button" aria-label="Elegir idioma" aria-haspopup="menu" aria-expanded="false" aria-controls="lang-menu" data-lang-toggle>
             <span class="flag flag--ar" aria-hidden="true"></span>
@@ -134,7 +138,7 @@
         <p><span class="legal-text">Tratamos los datos en base al consentimiento del usuario, el interes legitimo para mejorar la web y la atencion de consultas, y el cumplimiento de obligaciones legales cuando corresponda.</span></p>
 
         <h2>7. Cookies y tecnologias similares</h2>
-        <p><span class="legal-text">Usamos cookies y tecnologias similares para analitica y funcionamiento del sitio. Podes aceptar o rechazar desde el banner de consentimiento. Tu eleccion se guarda en el navegador y puede modificarse desde su configuracion.</span></p>
+        <p><span class="legal-text">Usamos cookies de Google Analytics para medir el trafico del sitio de forma agregada; no las usamos para publicidad. Podes bloquearlas o borrarlas desde la configuracion de tu navegador.</span></p>
 
         <h2>8. Servicios de terceros</h2>
         <ul>
@@ -170,7 +174,7 @@
     <footer class="site-footer">
       <div class="footer-inner">
         <div class="footer-brand">
-          <picture><source srcset="Fotos/1.webp?v=2026092804" type="image/webp" /><img src="Fotos/1.png?v=2026092804" alt="Cafeteria Lelita" class="footer-logo" /></picture>
+          <picture><source srcset="Fotos/1.webp?v=2026092805" type="image/webp" /><img src="Fotos/1.png?v=2026092805" alt="Cafeteria Lelita" class="footer-logo" /></picture>
         </div>
         <div class="footer-hours" aria-label="Horarios de atencion">
           <h2 class="footer-heading">Horarios</h2>
