@@ -1142,7 +1142,7 @@ body.has-nav-open {
 	z-index: 1;
 }
 
-/* Portada: botón "Ver la carta" debajo del video (referencia: el
+/* Portada: botón "Reservaciones" debajo del video (referencia: el
    "Reservations" de figaronyc.com en mobile) */
 .hero-cta {
 	display: flex;
@@ -1170,11 +1170,6 @@ body.has-nav-open {
 	text-decoration: none;
 	transition: background-color 200ms ease, color 200ms ease, transform 200ms ease;
 	-webkit-tap-highlight-color: transparent;
-}
-.hero-cta__btn::after {
-	content: "↓";
-	font-size: 1.05em;
-	letter-spacing: 0;
 }
 .hero-cta__btn:hover,
 .hero-cta__btn.is-pressed {

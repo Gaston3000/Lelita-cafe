@@ -510,7 +510,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			// Navegación / UI
 			'Inicio': 'Home',
 			'Hacer una reserva': 'Make a reservation',
-			'Ver la carta': 'See the menu',
+			'Reservaciones': 'Reservations',
 			'Nuestra historia': 'Our story',
 			'Infusiones': 'Drinks',
 			'Tortas': 'Cakes',
@@ -860,7 +860,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			// Navegación / UI
 			'Inicio': 'Início',
 			'Hacer una reserva': 'Fazer uma reserva',
-			'Ver la carta': 'Ver o cardápio',
+			'Reservaciones': 'Reservas',
 			'Nuestra historia': 'Nossa história',
 			'Infusiones': 'Bebidas',
 			'Tortas': 'Bolos',
