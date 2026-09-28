@@ -533,11 +533,11 @@ document.addEventListener('DOMContentLoaded', () => {
 					</radialGradient>
 				</defs>
 				<!-- Gota / pin -->
-				<path d="M26 2C14.4 2 5 11.2 5 22.6c0 7.2 4.7 13.6 10.6 21.3 4.9 6.4 8.4 12 9.1 14.4a1.3 1.3 0 0 0 2.6 0c.7-2.4 4.2-8 9.1-14.4C42.3 36.2 47 29.8 47 22.6 47 11.2 37.6 2 26 2Z" fill="#4f6d7a" stroke="#2f4a55" stroke-width="1.1"/>
+				<path d="M26 2C14.4 2 5 11.2 5 22.6c0 7.2 4.7 13.6 10.6 21.3 4.9 6.4 8.4 12 9.1 14.4a1.3 1.3 0 0 0 2.6 0c.7-2.4 4.2-8 9.1-14.4C42.3 36.2 47 29.8 47 22.6 47 11.2 37.6 2 26 2Z" fill="#565c43" stroke="#3a3f29" stroke-width="1.1"/>
 				<!-- Disco crema centrado -->
 				<circle cx="26" cy="22" r="13" fill="url(#lelitaPinBg)"/>
 				<!-- Glyph café — bowl agrandado + asa ajustada + 3 volutas (central más alta), centrado en el disco crema -->
-				<g transform="translate(26 22)" stroke-linecap="round" stroke-linejoin="round" fill="none" stroke="#4f6d7a">
+				<g transform="translate(26 22)" stroke-linecap="round" stroke-linejoin="round" fill="none" stroke="#565c43">
 					<!-- Vapor izquierdo (corto) -->
 					<path d="M -4 -4 q 1.4 -0.9 0 -1.8 q -1.4 -0.9 0 -1.8" stroke-width="1.6"/>
 					<!-- Vapor central (más alto) -->
@@ -545,7 +545,7 @@ document.addEventListener('DOMContentLoaded', () => {
 					<!-- Vapor derecho (corto) -->
 					<path d="M 4 -4 q 1.4 -0.9 0 -1.8 q -1.4 -0.9 0 -1.8" stroke-width="1.6"/>
 					<!-- Taza: pared recta + fondo redondeado (para que el asa no quede torcida) -->
-					<path d="M -7.5 -3 h 15 v 7 a 7.5 3.5 0 0 1 -15 0 z" fill="#4f6d7a" stroke="none"/>
+					<path d="M -7.5 -3 h 15 v 7 a 7.5 3.5 0 0 1 -15 0 z" fill="#565c43" stroke="none"/>
 					<!-- Asa hueca, flush con la pared recta -->
 					<path d="M 7.5 -0.5 c 3.5 0 3.5 5 0 5" stroke-width="1.9"/>
 				</g>
