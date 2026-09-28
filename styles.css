@@ -843,7 +843,7 @@ body.has-nav-open {
 	background: transparent;
 	border: 1px solid rgba(247, 235, 221, 0.4);
 	border-radius: 999px;
-	transition: all 200ms ease;
+	transition: background-color 200ms ease, border-color 200ms ease, transform 200ms ease;
 	-webkit-tap-highlight-color: transparent;
 }
 
@@ -1142,25 +1142,29 @@ body.has-nav-open {
 	z-index: 1;
 }
 
-/* Portada: botón "Reservaciones" debajo del video (referencia: el
-   "Reservations" de figaronyc.com en mobile) */
+/* Portada: botón "Reservaciones" tipo sello, montado sobre el borde inferior
+   del video (20% sobre el video, 80% abajo). Referencia: opción B. */
+.video-hero { z-index: 2; }
 .hero-cta {
+	position: relative;
+	z-index: 4;
+	height: 0;
 	display: flex;
 	justify-content: center;
-	padding: clamp(1.1rem, 4vw, 1.6rem) 1rem 0.25rem;
-	background: #fdfbf7;
 }
 .hero-cta__btn {
+	--hero-cta-h: 54px;
+	position: relative;
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
-	gap: 0.5rem;
-	height: 50px;
+	height: var(--hero-cta-h);
 	padding: 0 2rem;
-	border: 1.5px solid var(--color-primary);
+	transform: translateY(-20%);
+	border: none;
 	border-radius: 999px;
-	color: var(--color-primary);
-	background: transparent;
+	background: var(--color-primary);
+	color: var(--color-cream);
 	font-family: var(--font-title);
 	font-weight: 800;
 	font-size: 0.95rem;
@@ -1168,15 +1172,56 @@ body.has-nav-open {
 	text-transform: uppercase;
 	line-height: 1;
 	text-decoration: none;
-	transition: background-color 200ms ease, color 200ms ease, transform 200ms ease;
+	white-space: nowrap;
+	box-shadow:
+		0 10px 24px rgba(41, 44, 31, 0.32),
+		0 0 0 5px #fdfbf7;
+	transition: background-color 200ms ease, transform 200ms ease, box-shadow 200ms ease;
+	touch-action: manipulation;
 	-webkit-tap-highlight-color: transparent;
 }
-.hero-cta__btn:hover,
-.hero-cta__btn.is-pressed {
-	background: var(--color-primary);
-	color: var(--color-cream);
+.hero-cta__btn:hover {
+	background: var(--color-primary-dark, #3a3f29);
 }
-.hero-cta__btn:focus-visible { outline: 3px solid rgba(86, 92, 67, 0.4); outline-offset: 3px; }
+/* Puntas redondeadas donde el aro crema toca el borde del video: dos
+   "filetes" cóncavos (cuarto de círculo recortado) que unen el aro con la
+   sección de abajo. El borde del video está al 20% del alto del botón. */
+.hero-cta__btn::before,
+.hero-cta__btn::after {
+	--fillet: 12px;
+	content: "";
+	position: absolute;
+	top: calc(var(--hero-cta-h) * 0.2 - var(--fillet));
+	width: 10px;
+	height: var(--fillet);
+	pointer-events: none;
+}
+.hero-cta__btn::before {
+	left: -6.8px; /* centro del filete: tangente al aro (r=12, alto 54, aro 5) */
+	background: radial-gradient(circle at 0 0, transparent var(--fillet), #fdfbf7 calc(var(--fillet) + 0.5px));
+}
+.hero-cta__btn::after {
+	right: -6.8px;
+	background: radial-gradient(circle at 100% 0, transparent var(--fillet), #fdfbf7 calc(var(--fillet) + 0.5px));
+}
+.hero-cta__btn.is-pressed { transform: translateY(-20%) scale(0.98); }
+.hero-cta__btn:focus-visible { outline: 3px solid var(--color-primary); outline-offset: 7px; }
+
+/* La historia arranca debajo del 80% del botón que sobresale */
+.page-home .section-hero--about {
+	padding-top: calc(54px * 0.8 + clamp(1.5rem, 5vw, 2.25rem));
+}
+
+/* Separador corto sobre "Nuestra historia" */
+.section-hero--about .lead-body .about-heading::before {
+	content: "";
+	display: block;
+	width: 46px;
+	height: 2px;
+	margin: 0 auto 0.85rem;
+	border-radius: 2px;
+	background: rgba(86, 92, 67, 0.35);
+}
 
 .menus-section { scroll-margin-top: 56px; }
 @media (prefers-reduced-motion: no-preference) {
@@ -1194,6 +1239,7 @@ body.has-nav-open {
 	font-size: clamp(1.55rem, 5vw, 2.2rem);
 	text-align: center;
 	line-height: 1.15;
+	text-wrap: balance;
 }
 
 /* Títulos palabra por palabra (referencia: figaronyc.com). Cada palabra sube

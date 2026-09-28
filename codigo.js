@@ -1475,6 +1475,19 @@ document.addEventListener('DOMContentLoaded', () => {
 	}
 	splitTitleWords(); // idempotente: si setLanguage ya los armó, no hace nada
 
+	// ---- Animaciones Lottie (granitas, taza): quietas con "reducir movimiento" ----
+	if (reduceMotion) {
+		document.querySelectorAll('dotlottie-wc').forEach((el) => {
+			el.removeAttribute('autoplay');
+			el.removeAttribute('loop');
+			const stop = () => { try { el.dotLottie && el.dotLottie.pause(); } catch (_) { /* ignore */ } };
+			stop();
+			setTimeout(stop, 600);
+			setTimeout(stop, 2000);
+		});
+	}
+
+
 	// Dropdown opcional de Carta
 	if (dropdownToggle && submenu) {
 		dropdownToggle.addEventListener('click', (event) => {
