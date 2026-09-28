@@ -277,7 +277,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	});
 
 	// ---- Feedback táctil: pressed state ----
-	const pressables = document.querySelectorAll('.pill-link, .nav-link, .submenu-link, .menu-toggle, .dropdown-toggle, .accordion-toggle, .lang-toggle, .lang-option, .location-link, .reviews-link, .action-link, .menu-card-link');
+	const pressables = document.querySelectorAll('.pill-link, .nav-link, .submenu-link, .menu-toggle, .dropdown-toggle, .accordion-toggle, .lang-toggle, .lang-option, .location-link, .reviews-link, .action-link, .menu-card-link, .hero-cta__btn');
 	const addPressedHandlers = (el) => {
 		const add = () => el.classList.add('is-pressed');
 		const remove = () => el.classList.remove('is-pressed');
@@ -291,7 +291,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	// ---- Scroll reveal (sutil) ----
 	const reduceMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)')?.matches;
 	const revealItems = Array.from(
-		document.querySelectorAll('.section-hero:not(.section-hero--about), .section-hero--about .lead-body > *, .dish-card, .location-card, .reviews-card, .menu-card, .menus-text')
+		document.querySelectorAll('.section-hero:not(.section-hero--about), .section-hero--about .lead-body > :not(.about-heading), .dish-card, .location-card, .reviews-card, .menu-card, .menus-text')
 	);
 
 	const isInViewport = (el) => {
@@ -303,7 +303,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		revealItems.forEach((el, index) => {
 			el.classList.add('reveal');
 
-			if (el.matches('.section-hero--about .lead-body > *')) {
+			if (el.matches('.section-hero--about .lead-body > :not(.about-heading)')) {
 				const i = Array.prototype.indexOf.call(el.parentElement.children, el);
 				el.style.setProperty('--reveal-delay', `${i * 180}ms`);
 				return;
@@ -511,7 +511,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			'Inicio': 'Home',
 			'Hacer una reserva': 'Make a reservation',
 			'Ver la carta': 'See the menu',
-			'Reservar': 'Book a table',
+			'Nuestra historia': 'Our story',
 			'Infusiones': 'Drinks',
 			'Tortas': 'Cakes',
 			'Sobre nosotros': 'About us',
@@ -861,7 +861,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			'Inicio': 'Início',
 			'Hacer una reserva': 'Fazer uma reserva',
 			'Ver la carta': 'Ver o cardápio',
-			'Reservar': 'Reservar',
+			'Nuestra historia': 'Nossa história',
 			'Infusiones': 'Bebidas',
 			'Tortas': 'Bolos',
 			'Sobre nosotros': 'Sobre nós',
@@ -1218,7 +1218,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	// ---- Títulos palabra por palabra (referencia: figaronyc.com) ----
 	// Se arman DESPUÉS de traducir (la traducción solo toca elementos sin hijos)
 	// y se desarman antes de cada cambio de idioma.
-	const TITLE_WORDS_SELECTOR = '.video-heading, .menus-heading, .reviews-heading, .location-heading, .title-banner .title, .section-lead-card:not(.lead-card--text-only) .lead-body h2';
+	const TITLE_WORDS_SELECTOR = '.video-heading, .about-heading, .menus-heading, .reviews-heading, .location-heading, .title-banner .title, .section-lead-card:not(.lead-card--text-only) .lead-body h2';
 	const titleObserver = ('IntersectionObserver' in window)
 		? new IntersectionObserver((entries) => {
 			entries.forEach((entry) => {
