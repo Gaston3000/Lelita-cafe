@@ -1337,31 +1337,6 @@ body.has-nav-open {
 	transform: translateY(-2px) scale(0.99);
 }
 
-/* Movimiento horizontal lento de las cajas (las fotos quedan quietas)
-   - Siempre dentro del contenedor: de borde izquierdo -> borde derecho.
-   - Límites calculados por JS (vars --menu-drift-from/--menu-drift-to). */
-@media (max-width: 1023px) {
-	.menu-card-link.menu-card-link--pan-right,
-	.menu-card-link.menu-card-link--pan-left {
-		translate: var(--menu-drift-from, 0px) 0;
-		animation: menu-card-sweep var(--menu-drift-duration, 18s) ease-in-out infinite;
-		will-change: translate;
-	}
-
-	@keyframes menu-card-sweep {
-		0% { translate: var(--menu-drift-from, 0px) 0; }
-		50% { translate: var(--menu-drift-to, 0px) 0; }
-		100% { translate: var(--menu-drift-from, 0px) 0; }
-	}
-
-	@media (hover: hover) {
-		.menu-card-link:hover {
-			animation-play-state: paused;
-			translate: 0 0;
-		}
-	}
-}
-
 .menu-card-media {
 	position: absolute;
 	inset: 0;
@@ -1511,6 +1486,44 @@ body.has-nav-open {
 	font-size: clamp(1.25rem, 4.2vw, 1.95rem);
 }
 
+/* Vaivén de las tarjetas de menús (referencia: figaronyc.com en mobile).
+   Solo CSS: cada tarjeta va y viene ±15px en 15s; las pares a contramano
+   de las impares. En mobile además quedan en zig-zag, casi a todo el ancho. */
+@keyframes menu-card-sway-a {
+	0%, 100% { translate: -15px 0; }
+	50% { translate: 15px 0; }
+}
+@keyframes menu-card-sway-b {
+	0%, 100% { translate: 15px 0; }
+	50% { translate: -15px 0; }
+}
+
+@media (max-width: 1023px) {
+	.page-home .menus-section .menu-card {
+		animation: menu-card-sway-a 15s ease-in-out infinite;
+		will-change: translate;
+	}
+	.page-home .menus-section .menu-card:nth-child(even) {
+		animation-name: menu-card-sway-b;
+	}
+	.page-home .menus-section .menu-card:nth-child(2) { animation-duration: 14s; }
+	.page-home .menus-section .menu-card:nth-child(3) { animation-duration: 13s; }
+	.page-home .menus-section .menu-card:nth-child(4) { animation-duration: 12s; }
+}
+
+/* Mobile: tarjetas casi a todo el ancho y en zig-zag. Con los ±15px del
+   vaivén nunca se salen del contenedor (márgenes 35/15 sobre 50px libres). */
+@media (max-width: 767px) {
+	.page-home .menus-section .menu-card {
+		width: calc(100% - 50px);
+		max-width: none;
+		margin: 0 0 0 35px;
+	}
+	.page-home .menus-section .menu-card:nth-child(even) {
+		margin-left: 15px;
+	}
+}
+
 @media (min-width: 1024px) {
 	.menus-track {
 		grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -1527,7 +1540,7 @@ body.has-nav-open {
 	.menu-card-link::before {
 		transition: none;
 	}
-	.menu-card-link {
+	.page-home .menus-section .menu-card {
 		animation: none;
 		translate: 0 0;
 	}

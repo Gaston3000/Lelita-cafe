@@ -288,68 +288,6 @@ document.addEventListener('DOMContentLoaded', () => {
 	};
 	pressables.forEach(addPressedHandlers);
 
-	// ---- Inicio: movimiento suave de menús (cajas) ----
-	const setupMenuCardDrift = () => {
-		const links = Array.from(document.querySelectorAll('.menus-section .menu-card-link--pan-right, .menus-section .menu-card-link--pan-left'));
-		if (!links.length) return;
-
-		// Solo aplica en layouts 1-col/stack (mobile/tablet)
-		const isDesktop = window.matchMedia?.('(min-width: 1024px)')?.matches;
-		if (isDesktop) {
-			links.forEach((link) => {
-				link.style.removeProperty('--menu-drift-from');
-				link.style.removeProperty('--menu-drift-to');
-			});
-			return;
-		}
-
-		const travelFactorRight = 0.75;
-		const travelFactorLeft = 0.6;
-		links.forEach((link) => {
-			const shell = link.closest('.menus-shell') || link.parentElement;
-			if (!shell) return;
-			const shellRect = shell.getBoundingClientRect();
-			const linkRect = link.getBoundingClientRect();
-
-			const available = Math.max(0, shellRect.width - linkRect.width);
-			const half = available / 2;
-
-			// Basado en card centrada por CSS:
-			// - Izquierda (borde): translate = -half
-			// - Derecha (borde): translate = +half
-			// Queremos ir hasta ~75% del recorrido desde el borde opuesto.
-			// Desde izquierda: leftOffset = 0 -> leftOffset = available * 0.75
-			// translate = leftOffset - (available/2) = (0.75 - 0.5) * available = 0.25 * available = half * 0.5
-			const leftEdge = -half;
-			const rightEdge = half;
-			const towardRightStop = (-half) + (available * travelFactorRight); // en coordenadas "leftOffset" pero convertimos debajo
-			const towardLeftStop = (available * (1 - travelFactorLeft));
-			const toFromLeft = (towardRightStop - (available / 2));
-			const toFromRight = (towardLeftStop - (available / 2));
-
-			if (link.classList.contains('menu-card-link--pan-right')) {
-				link.style.setProperty('--menu-drift-from', `${leftEdge.toFixed(2)}px`);
-				link.style.setProperty('--menu-drift-to', `${toFromLeft.toFixed(2)}px`);
-			} else {
-				link.style.setProperty('--menu-drift-from', `${rightEdge.toFixed(2)}px`);
-				link.style.setProperty('--menu-drift-to', `${toFromRight.toFixed(2)}px`);
-			}
-		});
-	};
-
-	let menuDriftRaf = 0;
-	const scheduleMenuCardDrift = () => {
-		if (menuDriftRaf) cancelAnimationFrame(menuDriftRaf);
-		menuDriftRaf = requestAnimationFrame(() => {
-			menuDriftRaf = 0;
-			setupMenuCardDrift();
-		});
-	};
-
-	scheduleMenuCardDrift();
-	window.addEventListener('load', scheduleMenuCardDrift, { once: true });
-	window.addEventListener('resize', scheduleMenuCardDrift);
-
 	// ---- Scroll reveal (sutil) ----
 	const reduceMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)')?.matches;
 	const revealItems = Array.from(
