@@ -2482,7 +2482,7 @@ body.has-nav-open {
 .social-link:focus-visible { outline: 3px solid rgba(247, 235, 221, 0.7); outline-offset: 3px; }
 .social-link svg { width: 20px; height: 20px; display: block; }
 .footer-meta { font-size: 0.95rem; opacity: 0.9; font-family: "Raleway", "Segoe UI", sans-serif; }
-.footer-credit { font-weight: 700; font-family: "Raleway", "Segoe UI", sans-serif; }
+.footer-credit { color: inherit; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; font-weight: 700; font-family: "Raleway", "Segoe UI", sans-serif; }
 .footer-link {
 	color: var(--color-cream);
 	text-decoration: underline;

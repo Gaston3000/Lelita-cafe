@@ -1421,19 +1421,15 @@ document.addEventListener('DOMContentLoaded', () => {
 		}
 
 		// Footer credit: mantener el nombre de la marca
-		const footerMeta = document.querySelector('.footer-meta p');
-		if (footerMeta && footerMeta.querySelector('.footer-credit')) {
-			const creditSpan = footerMeta.querySelector('.footer-credit');
-			if (!footerMeta.dataset.i18nOriginalPrefix) {
-				const cloneText = normalize(footerMeta.textContent).replace(normalize(creditSpan.textContent), '').trim();
-				footerMeta.dataset.i18nOriginalPrefix = cloneText || 'Carta digital hecha por';
-			}
+		const creditSpan = document.querySelector('.footer-meta .footer-credit');
+		const footerMeta = creditSpan && creditSpan.closest('p');
+		if (footerMeta) {
 
 			const prefixEs = 'Carta digital hecha por';
 			const prefixEn = 'Digital menu by';
 			const prefixPt = 'Cardápio digital por';
 			const prefix = lang === 'en' ? prefixEn : lang === 'pt' ? prefixPt : prefixEs;
-			footerMeta.innerHTML = `${prefix} <span class="footer-credit">${creditSpan.textContent}</span>`;
+			footerMeta.innerHTML = `${prefix} ${creditSpan.outerHTML}`; // conserva el link a Instagram
 		}
 
 		// Title por página
