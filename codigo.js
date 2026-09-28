@@ -291,7 +291,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	// ---- Scroll reveal (sutil) ----
 	const reduceMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)')?.matches;
 	const revealItems = Array.from(
-		document.querySelectorAll('.section-hero, .dish-card, .location-card, .reviews-card, .menu-card, .menus-heading, .menus-text')
+		document.querySelectorAll('.section-hero:not(.section-hero--about), .section-hero--about .lead-body > *, .dish-card, .location-card, .reviews-card, .menu-card, .menus-text')
 	);
 
 	const isInViewport = (el) => {
@@ -303,8 +303,9 @@ document.addEventListener('DOMContentLoaded', () => {
 		revealItems.forEach((el, index) => {
 			el.classList.add('reveal');
 
-			if (el.matches('.menus-heading')) {
-				el.style.setProperty('--reveal-delay', '0ms');
+			if (el.matches('.section-hero--about .lead-body > *')) {
+				const i = Array.prototype.indexOf.call(el.parentElement.children, el);
+				el.style.setProperty('--reveal-delay', `${i * 180}ms`);
 				return;
 			}
 
@@ -509,6 +510,8 @@ document.addEventListener('DOMContentLoaded', () => {
 			// Navegación / UI
 			'Inicio': 'Home',
 			'Hacer una reserva': 'Make a reservation',
+			'Ver la carta': 'See the menu',
+			'Reservar': 'Book a table',
 			'Infusiones': 'Drinks',
 			'Tortas': 'Cakes',
 			'Sobre nosotros': 'About us',
@@ -857,6 +860,8 @@ document.addEventListener('DOMContentLoaded', () => {
 			// Navegación / UI
 			'Inicio': 'Início',
 			'Hacer una reserva': 'Fazer uma reserva',
+			'Ver la carta': 'Ver o cardápio',
+			'Reservar': 'Reservar',
 			'Infusiones': 'Bebidas',
 			'Tortas': 'Bolos',
 			'Sobre nosotros': 'Sobre nós',
@@ -1210,12 +1215,55 @@ document.addEventListener('DOMContentLoaded', () => {
 		},
 	};
 
+	// ---- Títulos palabra por palabra (referencia: figaronyc.com) ----
+	// Se arman DESPUÉS de traducir (la traducción solo toca elementos sin hijos)
+	// y se desarman antes de cada cambio de idioma.
+	const TITLE_WORDS_SELECTOR = '.video-heading, .menus-heading, .reviews-heading, .location-heading, .title-banner .title, .section-lead-card:not(.lead-card--text-only) .lead-body h2';
+	const titleObserver = ('IntersectionObserver' in window)
+		? new IntersectionObserver((entries) => {
+			entries.forEach((entry) => {
+				if (!entry.isIntersecting) return;
+				entry.target.classList.add('is-in');
+				titleObserver.unobserve(entry.target);
+			});
+		}, { threshold: 0.35 })
+		: null;
+
+	const unsplitTitleWords = () => {
+		document.querySelectorAll('.tw-title').forEach((el) => {
+			el.textContent = el.textContent;
+		});
+	};
+
+	const splitTitleWords = () => {
+		document.querySelectorAll(TITLE_WORDS_SELECTOR).forEach((el) => {
+			if (el.children.length) return; // solo títulos de texto plano
+			const words = el.textContent.trim().split(/\s+/).filter(Boolean);
+			if (!words.length) return;
+			el.textContent = '';
+			words.forEach((word, i) => {
+				if (i) el.append(' ');
+				const span = document.createElement('span');
+				span.className = 'tw';
+				span.style.setProperty('--tw-i', String(i));
+				span.textContent = word;
+				el.append(span);
+			});
+			if (el.classList.contains('tw-title')) return; // ya animado: queda visible
+			el.classList.add('tw-title');
+			if (!titleObserver) { el.classList.add('is-in'); return; }
+			// doble rAF: que el estado inicial se pinte antes de animar
+			requestAnimationFrame(() => requestAnimationFrame(() => titleObserver.observe(el)));
+		});
+	};
+
 	const applyTranslations = (lang) => {
 		const isSpanish = lang === 'es';
+		unsplitTitleWords();
 		const table = TEXT_TRANSLATIONS[lang] || null;
 
 		const candidates = document.querySelectorAll(
-			'.nav-text, .nav-link, .pill-link, .title, .video-heading, .location-heading, .location-text, .location-link span, .footer-heading, .footer-hours p, .footer-social-title, .footer-meta p, .footer-link, .accordion-toggle, .dish-name, .dish-desc, .lead-body h2, .lead-body p, .legal-content h2, .legal-label, .legal-text, .legal-updated, .reviews-heading, .reviews-text, .reviews-hint, .reviews-link span, .menus-heading, .menus-text, .menu-card-title, .menu-card-cta, .menu-legend__title, .menu-legend__text, .menu-legend__lead, .menu-legend__label, .menu-legend__sep, .promo-lunch__title, .promo-lunch__subtitle, .promo-card__label, .promo-card__desc'
+			'.nav-text, .nav-link, .pill-link, .title, .video-heading, .location-heading, .location-text, .location-link span, .footer-heading, .footer-hours p, .footer-social-title, .footer-meta p, .footer-link, .accordion-toggle, .dish-name, .dish-desc, .lead-body h2, .lead-body p, .legal-content h2, .legal-label, .legal-text, .legal-updated, .reviews-heading, .reviews-text, .reviews-hint, .reviews-link span, .menus-heading, .menus-text, .menu-card-title, .menu-card-cta, .menu-legend__title, .menu-legend__text, .menu-legend__lead, .menu-legend__label, .menu-legend__sep, .promo-lunch__title, .promo-lunch__subtitle, .promo-card__label, .promo-card__desc, .hero-cta__label'
 		);
 
 		candidates.forEach((el) => {
@@ -1308,6 +1356,8 @@ document.addEventListener('DOMContentLoaded', () => {
 		if (titleMap) {
 			document.title = titleMap[lang] || titleMap.es;
 		}
+
+		splitTitleWords();
 	};
 
 	const closeLangMenu = () => {
@@ -1423,6 +1473,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	} catch (e) {
 		// ignore
 	}
+	splitTitleWords(); // idempotente: si setLanguage ya los armó, no hace nada
 
 	// Dropdown opcional de Carta
 	if (dropdownToggle && submenu) {
