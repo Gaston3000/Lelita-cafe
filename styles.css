@@ -1648,6 +1648,12 @@ body.has-nav-open {
 .page-home .menus-section .menu-card-title {
 	font-size: clamp(1.25rem, 4.2vw, 1.95rem);
 }
+/* Mobile/tablet: nombres de las tarjetas más grandes (tarjetas casi a todo el ancho) */
+@media (max-width: 1023px) {
+	.page-home .menus-section .menu-card-title {
+		font-size: clamp(1.6rem, 7.2vw, 2.4rem);
+	}
+}
 
 /* Vaivén de las tarjetas de menús (referencia: figaronyc.com en mobile).
    Solo CSS: cada tarjeta va y viene ±15px en 15s; las pares a contramano
