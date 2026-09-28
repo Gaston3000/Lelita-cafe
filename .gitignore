@@ -24,3 +24,6 @@ Desktop.ini
 
 # Deploy artifacts
 webp-pack.zip
+
+# Respaldos locales de produccion (bajados por FTP)
+backup-produccion-*/
