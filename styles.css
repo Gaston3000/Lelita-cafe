@@ -2450,10 +2450,13 @@ body.has-nav-open {
 	height: 68px;
 	border-radius: 12px;
 	object-fit: contain;
-	background: var(--color-primary);
+	/* El PNG del logo es blanco: invert() lo vuelve oscuro, pero también invierte
+	   el fondo. #081422 invertido = #f7ebdd (crema de marca). */
+	background: #081422;
 	padding: 8px;
 	border: 1px solid rgba(247, 235, 221, 0.4);
 	box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+	filter: invert(1);
 }
 .footer-title { font-family: var(--font-title); font-weight: 800; letter-spacing: 0.04em; font-size: 1.25rem; }
 .footer-heading { margin: 0 0 0.35rem; font-family: var(--font-title); font-size: 1.05rem; letter-spacing: 0.04em; }
