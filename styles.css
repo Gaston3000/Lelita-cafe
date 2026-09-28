@@ -1511,6 +1511,36 @@ body.has-nav-open {
 	.page-home .menus-section .menu-card:nth-child(4) { animation-duration: 12s; }
 }
 
+/* Aparición de las tarjetas: suben desde abajo (como el fadeInUp de
+   figaronyc.com), más marcado que el .reveal general del sitio. */
+.page-home .menus-section .menu-card.reveal {
+	transform: translateY(90px);
+	filter: none;
+	transition:
+		opacity 800ms ease,
+		transform 1000ms cubic-bezier(0.22, 1, 0.36, 1);
+	transition-delay: 0ms;
+}
+.page-home .menus-section .menu-card.reveal.is-visible {
+	transform: none;
+}
+/* Mobile: entran de a una al scrollear, así que solo un leve desfase. */
+.page-home .menus-section .menu-card.reveal:nth-child(even) {
+	transition-delay: 150ms;
+}
+/* Desktop: las 4 entran juntas -> escalonadas como en Figaro. */
+@media (min-width: 1024px) {
+	.page-home .menus-section .menu-card.reveal:nth-child(2) { transition-delay: 150ms; }
+	.page-home .menus-section .menu-card.reveal:nth-child(3) { transition-delay: 300ms; }
+	.page-home .menus-section .menu-card.reveal:nth-child(4) { transition-delay: 450ms; }
+}
+@media (prefers-reduced-motion: reduce) {
+	.page-home .menus-section .menu-card.reveal {
+		transform: none;
+		transition: none;
+	}
+}
+
 /* Mobile: tarjetas casi a todo el ancho y en zig-zag. Con los ±15px del
    vaivén nunca se salen del contenedor (márgenes 35/15 sobre 50px libres). */
 @media (max-width: 767px) {
