@@ -537,7 +537,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			'Ver reseñas': 'See reviews',
 			'Opiniones destacadas': 'Featured reviews',
 			'Ver reseñas de Cafetería Lelita en Google': 'View Cafetería Lelita reviews on Google',
-			'4,8 estrellas (226 opiniones)': '4.8 stars (226 reviews)',
+			'4,8 estrellas (288 opiniones)': '4.8 stars (288 reviews)',
 
 			// Politica de privacidad
 			'Politica de privacidad': 'Privacy policy',
@@ -887,7 +887,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			'Ver reseñas': 'Ver avaliações',
 			'Opiniones destacadas': 'Avaliações em destaque',
 			'Ver reseñas de Cafetería Lelita en Google': 'Ver avaliações da Cafetería Lelita no Google',
-			'4,8 estrellas (226 opiniones)': '4,8 estrelas (226 avaliações)',
+			'4,8 estrellas (288 opiniones)': '4,8 estrelas (288 avaliações)',
 
 			// Politica de privacidad
 			'Politica de privacidad': 'Politica de privacidade',
